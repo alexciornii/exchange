@@ -1,0 +1,17 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: exchange
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/exchange?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:$UR$xm#LB63&th^}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
