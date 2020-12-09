@@ -1,5 +1,6 @@
 package com.javatest.exchange.service;
 
+import com.javatest.exchange.dto.ExchangeRateDto;
 import com.javatest.exchange.entity.Currency;
 import com.javatest.exchange.entity.ExchangeRate;
 import com.javatest.exchange.repository.CurrencyRepository;
@@ -8,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Optional;
 
 @Slf4j
@@ -32,14 +31,18 @@ public class ExchangeRateService {
         return Optional.empty();
     }
 
-    public boolean createExchangeRate(ExchangeRate exchangeRate) {
-        exchangeRate.setCourseDate(Timestamp.from(Instant.now()).getTime());
+    public void createExchangeRate(ExchangeRateDto exchangeRateDto) {
+        Optional<Currency> optionalCurrency = currencyRepository.findByCode(exchangeRateDto.getCurrency());
         try {
-            exchangeRateRepository.save(exchangeRate);
-            return true;
+            if (optionalCurrency.isPresent()) {
+                exchangeRateRepository.save(new ExchangeRate(
+                        optionalCurrency.get(),
+                        exchangeRateDto.getRate(),
+                        exchangeRateDto.getCourse())
+                );
+            }
         } catch (Exception e) {
-            log.error("Undefined error during save exchange rate {}; {}", exchangeRate, e.getMessage(), e);
+            log.error("Undefined error during save exchange rate {}; {}", exchangeRateDto, e.getMessage(), e);
         }
-        return false;
     }
 }

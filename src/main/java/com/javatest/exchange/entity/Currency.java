@@ -1,6 +1,8 @@
 package com.javatest.exchange.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,8 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "dictionar_valute")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Currency implements Serializable {
 
     @Id

@@ -1,5 +1,6 @@
 package com.javatest.exchange.controller;
 
+import com.javatest.exchange.dto.ExchangeRateDto;
 import com.javatest.exchange.entity.ExchangeRate;
 import com.javatest.exchange.service.ExchangeRateService;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +34,8 @@ public class ExchangeRateController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createExchangeRate(@RequestBody ExchangeRate exchangeRate) {
-        exchangeRateService.createExchangeRate(exchangeRate);
+    public void createExchangeRate(@RequestBody ExchangeRateDto exchangeRateDto) {
+        exchangeRateService.createExchangeRate(exchangeRateDto);
     }
 
 }

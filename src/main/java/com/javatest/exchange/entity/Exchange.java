@@ -1,6 +1,8 @@
 package com.javatest.exchange.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "schimb_valutar")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Exchange {
 
     @Id
@@ -36,4 +41,12 @@ public class Exchange {
 
     @Column(name = "exchange_date")
     private Long exchangeDate;
+
+    public Exchange(Currency currency, Float course, Float amountReceived, Float amountReleased) {
+        this.currency = currency;
+        this.course = course;
+        this.amountReceived = amountReceived;
+        this.amountReleased = amountReleased;
+        this.exchangeDate = new Date().getTime();
+    }
 }

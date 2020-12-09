@@ -58,9 +58,9 @@ INSERT INTO angajati (username, first_name, last_name) VALUES ('operator1', 'Ion
 INSERT INTO angajati (username, first_name, last_name) VALUES ('operator2', 'Mihai', 'Eminescu');
 INSERT INTO angajati (username, first_name, last_name) VALUES ('operator3', 'John', 'Travolta');
 
-INSERT INTO curs_valutar (currency_code, rate, course, course_date) VALUES ('EUR', 1, 19.70, current_timestamp);
-INSERT INTO curs_valutar (currency_code, rate, course, course_date) VALUES ('USD', 1, 17.40, current_timestamp);
+INSERT INTO curs_valutar (currency_code, rate, course, course_date) VALUES ('EUR', 1, 19.70, UNIX_TIMESTAMP());
+INSERT INTO curs_valutar (currency_code, rate, course, course_date) VALUES ('USD', 1, 17.40, UNIX_TIMESTAMP());
 
-INSERT INTO schimb_valutar (currency_code, course, amount_received, amount_released, exchange_date) VALUES ('EUR', 19.70, 100, 1970, current_timestamp);
+INSERT INTO schimb_valutar (currency_code, course, amount_received, amount_released, exchange_date) VALUES ('EUR', 19.70, 100, 1970, UNIX_TIMESTAMP());
 
-INSERT INTO cash (currency_code, operator_username, amount, created_date) VALUES ('EUR', 'operator1', 1450, current_timestamp);
+INSERT INTO cash (currency_code, operator_username, amount, created_date) VALUES ('EUR', 'operator1', 1450, UNIX_TIMESTAMP());

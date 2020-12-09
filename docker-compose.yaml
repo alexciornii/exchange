@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mysql-container:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: exchange
+      MYSQL_TCP_PORT: 3307
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 9999:9999
+    environment:
+      DB_URL: jdbc:mysql://mysql-container:3307/exchange
+      DB_USERNAME: root
+      DB_PASSWORD: password
+    depends_on:
+      - mysql-container
